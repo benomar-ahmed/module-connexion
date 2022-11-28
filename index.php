@@ -1,11 +1,3 @@
-<?php
-
-
-
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <?php include 'header.php';  ?>
+
+    <main>
+        <h1>Bienvenue dans mon projet Module/Connexion</h1>
+    </main>
+
+    <?php include 'footer.php'; ?>
 </body>
 </html>
