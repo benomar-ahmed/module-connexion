@@ -1,9 +1,14 @@
 <?php
 
 $mysqli = new mysqli("localhost","root","","moduleconnexion");
+$message = "Les mots de passes ne sont pas identiques !";
 
-
-
+if(isset($_POST['submit'])){
+    if($_POST['password']==$_POST['password1']){
+        $result = mysqli_query($mysqli,"INSERT INTO utilisateurs (`login`,`nom`,`prenom`,`password`) VALUES ('".$_POST['login']."','".$_POST['nom']."','".$_POST['prenom']."','".$_POST['password']."');");
+        
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -20,18 +25,23 @@ $mysqli = new mysqli("localhost","root","","moduleconnexion");
     <main>
         <form action="" method="post">
             <label for="login">Login :</label>
-            <input type="text" name="login" id="login">
+            <input type="text" name="login" id="login" required="required">
             <label for="nom">Nom :</label>
-            <input type="text" name="nom" id="nom">
+            <input type="text" name="nom" id="nom" required="required">
             <label for="prenom">Prénom :</label>
-            <input type="text" name="prenom" id="prenom">
+            <input type="text" name="prenom" id="prenom" required="required">
             <label for="password">Mot de passe :</label>
-            <input type="password" name="password" id="password">
+            <input type="password" name="password" id="password" required="required">
             <label for="password1">Retapez votre mot de passe :</label>
-            <input type="password" name="password1" id="password1">
-            <input type="submit" value="Créez mon compte">
+            <input type="password" name="password1" id="password1" required="required">
+            <input type="submit" value="S'inscrire" name="submit"><br>
+            <?php if(isset($_POST['submit'])){
+                    if($_POST['password']!=$_POST['password1']){
+                        echo $message;
+                    }
+            }
+    ?>
         </form>
-
     </main>
 
     <?php include 'footer.php'; ?>
